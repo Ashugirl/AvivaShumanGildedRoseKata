@@ -1,8 +1,14 @@
 package com.gildedrose;
 
+
+import com.gildedrose.strategy.ItemUpdateStrategyFactory;
+import com.gildedrose.strategy.UpdateQuality;
+
 public class TexttestFixture {
     public static void main(String[] args) {
         System.out.println("OMGHAI!");
+
+        ItemUpdateStrategyFactory itemUpdateStrategyFactory =  new ItemUpdateStrategyFactory();
 
         Item[] items = new Item[] {
                 new Item("+5 Dexterity Vest", 10, 20), //
@@ -30,7 +36,7 @@ public class TexttestFixture {
                 System.out.println(item);
             }
             System.out.println();
-            app.updateQuality();
+           // app.updateQuality();
         }
     }
 
