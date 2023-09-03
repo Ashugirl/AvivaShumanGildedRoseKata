@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.strategy.ItemUpdateStrategyFactory;
+import com.gildedrose.strategy.strategyFactory.ItemUpdateStrategyFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

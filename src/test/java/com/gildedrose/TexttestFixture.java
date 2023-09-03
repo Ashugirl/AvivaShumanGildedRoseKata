@@ -1,8 +1,7 @@
 package com.gildedrose;
 
 
-import com.gildedrose.strategy.ItemUpdateStrategyFactory;
-import com.gildedrose.strategy.UpdateQuality;
+import com.gildedrose.strategy.strategyFactory.ItemUpdateStrategyFactory;
 
 public class TexttestFixture {
     public static void main(String[] args) {

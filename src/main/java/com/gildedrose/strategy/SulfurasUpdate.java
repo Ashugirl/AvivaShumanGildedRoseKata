@@ -1,19 +1,11 @@
 package com.gildedrose.strategy;
 
 import com.gildedrose.Item;
-import com.gildedrose.strategy.UpdateQuality;
 
-public class SulfurasUpdate implements UpdateQuality {
-
-    public SulfurasUpdate() {
-
-    }
-
-    public SulfurasUpdate(Item item) {
-    }
+public class SulfurasUpdate implements UpdateQualityStrategy {
 
     @Override
-    public void updateQuality(Item item) {
+    public void updateQualityStrategy(Item item) {
         item.sellIn = item.sellIn - 1;
         item.quality = 80;
     }

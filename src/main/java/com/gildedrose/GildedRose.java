@@ -1,7 +1,7 @@
 package com.gildedrose;
 
-import com.gildedrose.strategy.ItemUpdateStrategyFactory;
-import com.gildedrose.strategy.UpdateQuality;
+import com.gildedrose.strategy.UpdateQualityStrategy;
+import com.gildedrose.strategy.strategyFactory.ItemUpdateStrategyFactory;
 
 class GildedRose {
     Item[] items;
@@ -13,14 +13,12 @@ class GildedRose {
     }
 
     // Implemented combined Strategy/Factory design pattern. Moved logic from this (context) class to strategy classes.
-    // TODO - add update for conjured item.
     // TODO - create more tests
-    // TODO - clean up formatting
     // TODO - create README.md
     public void updateQuality() {
-        for(Item item  : items) {
-            UpdateQuality updateQuality = itemUpdateStrategyFactory.getUpdateItemStrategy(item);
-            updateQuality.updateQuality(item);
+        for (Item item : items) {
+            UpdateQualityStrategy updateQualityStrategy = itemUpdateStrategyFactory.getUpdateItemStrategy(item);
+            updateQualityStrategy.updateQualityStrategy(item);
         }
     }
 }
