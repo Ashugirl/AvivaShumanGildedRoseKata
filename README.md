@@ -17,3 +17,9 @@
 ```
 ./gradlew run --args 10
 ```
+
+### Credit - The original Kata can be found at:
+
+```
+https://github.com/emilybache/GildedRose-Refactoring-Kata
+```
