@@ -1,15 +1,19 @@
-# Gilded Rose starting position in Java
+# Welcome to the Gilded Rose
 
-## Run the Text Fixture from Command-Line
-
-```
-./gradlew -q text
-```
-
-### Specify Number of Days
-
-For e.g. 10 days:
+## To compile the program from Command-Line
 
 ```
-./gradlew -q text --args 10
+./gradlew build
+```
+
+## To run the program from Command-Line
+
+```
+./gradlew run
+```
+
+## To specify number of days (eg. 10)
+
+```
+./gradlew run --args 10
 ```
