@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
-    Item standardItem = new Item("foo", 10, 1);
+    Item standardItem = new Item("foo", 1, 10);
     Item agedBrie = new Item("Aged brie", 2, 49);
     Item backStagePassesJustOut = new Item("Backstage passes", 20, 15);
     Item backStagePassesConcertSoonish = new Item("Backstage passes", 9, 48);
@@ -13,6 +13,8 @@ class GildedRoseTest {
     Item backStagePassesConcertOver = new Item("Backstage PaSSes", 0, 2);
     Item sulfuras = new Item("SuLfuras", 0, 80);
     Item conjuredItem = new Item("conjured", 5, 4);
+    Item oldConjuredItem = new Item("conjured1", 1, 10);
+    Item oldStandardItem = new Item("bar", 9, 1);
     Item[] items = {
         standardItem,
         agedBrie,
@@ -21,32 +23,32 @@ class GildedRoseTest {
         backStagePassesConcertReallySoon,
         backStagePassesConcertOver,
         sulfuras,
-        conjuredItem
+        conjuredItem,
+        oldConjuredItem,
+        oldStandardItem
     };
 
 
     @Test
-    void checkThatSellInGoesDownByOneDailyExceptSulfuras() {
+    void checkThatSellInGoesDownByOneDaily() {
         GildedRose gildedRose = new GildedRose(items);
         gildedRose.updateQuality();
-        assertEquals(9, gildedRose.items[0].sellIn);
+        assertEquals(0, gildedRose.items[0].sellIn);
         assertEquals(1, gildedRose.items[1].sellIn);
         assertEquals(19, gildedRose.items[2].sellIn);
         assertEquals(8, gildedRose.items[3].sellIn);
         assertEquals(3, gildedRose.items[4].sellIn);
         assertEquals(-1, gildedRose.items[5].sellIn);
-        // sulfuras should stay at 0
-        assertEquals(0, gildedRose.items[6].sellIn);
+        assertEquals(-1, gildedRose.items[6].sellIn);
         assertEquals(4, gildedRose.items[7].sellIn);
         gildedRose.updateQuality();
-        assertEquals(8, gildedRose.items[0].sellIn);
+        assertEquals(-1, gildedRose.items[0].sellIn);
         assertEquals(0, gildedRose.items[1].sellIn);
         assertEquals(18, gildedRose.items[2].sellIn);
         assertEquals(7, gildedRose.items[3].sellIn);
         assertEquals(2, gildedRose.items[4].sellIn);
         assertEquals(-2, gildedRose.items[5].sellIn);
-        // sulfuras should stay at 0
-        assertEquals(0, gildedRose.items[6].sellIn);
+        assertEquals(-2, gildedRose.items[6].sellIn);
         assertEquals(3, gildedRose.items[7].sellIn);
     }
 
@@ -54,9 +56,20 @@ class GildedRoseTest {
     void checkThatStandardItemQualityUpdatesByOneButDoesNotGoNegative() {
         GildedRose gildedRose = new GildedRose(items);
         gildedRose.updateQuality();
-        assertEquals(0, gildedRose.items[0].quality);
+        assertEquals(0, gildedRose.items[9].quality);
         gildedRose.updateQuality();
-        assertEquals(0, gildedRose.items[0].quality);
+        assertEquals(0, gildedRose.items[9].quality);
+    }
+
+    @Test
+    void checkThatStandardAndConjuredItemsDegradeTwiceAsFastAfterSellByDate(){
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+        assertEquals(9, gildedRose.items[0].quality);
+        assertEquals(8, gildedRose.items[8].quality);
+        gildedRose.updateQuality();
+        assertEquals(7, gildedRose.items[0].quality);
+        assertEquals(4, gildedRose.items[8].quality);
     }
 
     @Test
